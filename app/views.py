@@ -3,10 +3,9 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import BaseAuthentication
 from rest_framework.generics import CreateAPIView
 from rest_framework.parsers import FormParser, JSONParser
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Posts
 from .serializer import PostSerializer, CommentSerializer, UserSerializer
@@ -55,20 +54,17 @@ def logout(request):
 
 class UserSignUp(CreateAPIView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (BaseAuthentication,)
     serializer_class = UserSerializer
     parser_classes = (FormParser, JSONParser)
 
 
 class PostView(CreateAPIView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (BaseAuthentication,)
     serializer_class = PostSerializer
     parser_classes = (FormParser, JSONParser)
 
 
 class CommentView(CreateAPIView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (BaseAuthentication,)
     serializer_class = CommentSerializer
     parser_classes = (FormParser, JSONParser)
