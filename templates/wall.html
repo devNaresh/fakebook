@@ -1,0 +1,79 @@
+{% extends "home.html" %}
+{% block postform %}
+    {% load static from staticfiles %}
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Hi {{ name }} </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url "signOut" %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container bootstrap snippet">
+        <div class="panel profile-info">
+            <form id="userPost" method="post" action="">{% csrf_token %}
+                <textarea name="text" class="form-control input-lg p-text-area" rows="2"
+                          placeholder="Whats in your mind today?"></textarea>
+                <button type="submit" class="btn btn-info pull-right">Post</button>
+            </form>
+        </div>
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="box box-widget">
+                    <div class="box-header with-border">
+                        <div class="user-block">
+                            <img class="img-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png"
+                                 alt="User Image">
+                            <span class="username"><a href="#">{{ post.user }}</a></span>
+                            <span class="description">{{ post.get_time }}</span>
+                        </div>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title=""
+                                    data-original-title="Mark as read">
+                                <i class="fa fa-circle-o"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                    class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <p>{{ post.text }}</p>
+                    </div>
+                    {% for comment in post.get_commets %}
+                        <div class="box-footer box-comments">
+                            <div class="box-comment">
+                                <img class="img-circle img-sm" src="http://bootdey.com/img/Content/avatar/avatar2.png"
+                                     alt="User Image">
+                                <div class="comment-text">
+					          <span class="username">
+					          {{ comment.user }}
+					          <span class="text-muted pull-right">{{ comment.get_time }}</span>
+					          </span>
+                                    {{ comment.text }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="box-footer">
+                        <form class="commentPost" action="" method="post">{% csrf_token %}
+                            <img class="img-responsive img-circle img-sm"
+                                 src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Alt Text">
+                            <div class="img-push">
+                                <input type="hidden" class="form-control input-sm"
+                                       name="post" value={{ post.id }}>
+                                <input type="text" name="text" class="form-control input-sm"
+                                       placeholder="Press enter to post comment">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock postform %}

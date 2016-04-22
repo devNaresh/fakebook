@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+
+    <title>Naresh Kumar - Python/Django Developer</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/fakebook.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static "js/fakebook.js" %}"></script>
+</head>
+
+<body>
+{% block postform %}{% endblock %}
+</body>
+
+</html>
