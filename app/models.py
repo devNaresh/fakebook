@@ -18,7 +18,7 @@ class Posts(TimeStampedModel):
         return self.posts_comments.all()
 
     def get_time(self):
-        return datetime.strftime(self.modified, "%H/%M/%S %b %d %Y")
+        return datetime.strftime(self.modified, "%H:%M:%S %b/%d/%Y")
 
 
 class Comments(TimeStampedModel):
@@ -30,4 +30,4 @@ class Comments(TimeStampedModel):
         return "{0}".format(self.text)
 
     def get_time(self):
-        return datetime.strftime(self.modified, "%H/%M/%S %b %d %Y")
+        return datetime.strftime(self.modified, "%H:%M:%S %b/%d/%Y")
