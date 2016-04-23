@@ -5,9 +5,16 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 
-# Create your models here.
-
 class Posts(TimeStampedModel):
+    """
+    Model for user Posts
+
+     --- Methods ---
+
+    1)  get_comments() : Return all comments on post
+    2)  get_time() : Return modified time of post
+
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     text = models.TextField()
 
@@ -22,6 +29,14 @@ class Posts(TimeStampedModel):
 
 
 class Comments(TimeStampedModel):
+    """
+    Model for Comments on Posts
+
+     --- Methods ---
+
+    1)  get_time() : Return modified time of post
+
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     post = models.ForeignKey(Posts, related_name="posts_comments")
     text = models.TextField()

@@ -7,6 +7,15 @@ from .models import Posts, Comments
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Post... Convert JSON to python object and save to model
+
+     --- Methods ---
+
+    1)  create() : Override default method of model serializer for user field.
+
+    """
+
     class Meta:
         model = Posts
         fields = ("text",)
@@ -17,6 +26,15 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Comment... Convert JSON to python object and save to model
+
+     --- Methods ---
+
+    1)  create() : Override default method of model serializer for user field.
+
+    """
+
     class Meta:
         model = Comments
         fields = ("text", "post")
@@ -27,6 +45,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User Model... Convert JSON to python object and save to model
+
+     --- Methods ---
+
+    1)  create() : Override default method to save user.
+
+    """
+
     class Meta:
         model = User
         fields = ("username", "first_name", "last_name", "password", "email")
