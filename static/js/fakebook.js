@@ -51,3 +51,15 @@ $(document).ready(function () {
         /* prevent browser submitting form*/
     });
 });
+
+
+$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut("slow");
+	});
+
+$(document).ajaxStart(function(){
+    $('.se-pre-con').show();
+ }).ajaxStop(function(){
+    $('.se-pre-con').hide();
+ });
