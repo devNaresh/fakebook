@@ -53,13 +53,13 @@ $(document).ready(function () {
 });
 
 
-$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");
-	});
+$(window).load(function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
+});
 
-$(document).ajaxStart(function(){
+$(document).ajaxStart(function () {
     $('.se-pre-con').show();
- }).ajaxStop(function(){
+}).ajaxStop(function () {
     $('.se-pre-con').hide();
- });
+});
