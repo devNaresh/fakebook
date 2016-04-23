@@ -53,7 +53,6 @@ def logout(request):
 
 
 class UserSignUp(CreateAPIView):
-    permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
     parser_classes = (FormParser, JSONParser)
 
